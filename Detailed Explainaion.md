@@ -1,5 +1,5 @@
-![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/29a2ab1d-ad50-45a1-9f7e-5c2b144e4d7c)![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/f6019357-3310-405e-b946-a8daaddc2927)
-
+# CI with AWS
+![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/f6019357-3310-405e-b946-a8daaddc2927)
 
 AWS -> code build -> Create build project -> name(simple-python-flask-service) , description
 
@@ -89,6 +89,9 @@ Build => Build Provider -> AWS CodeBuild , Project Name(Your CodeBuild Project) 
 Add Deploy Stage => Deploy Provider => Skip deploy stage (As it will be covered in Deployment Stage) => Create Pipeline
 
 If someone makes change to github repo , It will be triggered automatically.
+
+# CD with AWS 
+
 ![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/7da4b4a1-303a-4545-9ba2-7bffb55c2b2c)
 
 Code Build also happens as somechange make to  Github Repository.
@@ -96,11 +99,11 @@ Code Build also happens as somechange make to  Github Repository.
 ![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/271ad16c-e971-4d1f-9e19-7b83cc3d17e9)
 We are using CodePipeline as an orchestrator where as it invokes AWS CodeBuild and AWS Code Deploy
 
-AWS => Code Deploy => Create Application => Application Name (any name : sample=python-flask) , Compute Platform (Ec2/On-primises)
+AWS => Code Deploy => Create Application => Application Name (any name : sample-python-flask) , Compute Platform (Ec2/On-primises)
 ```
 This Code deploy should deploy application on Ec2 Instance.
 AWS => Ec2 instance =>  ubuntu with normal config (Ensure Public Ip enabled(Auto-assign Pulic Ip -> from Network Settings))
-EC2 -> manage Instance -> Manage Tags -> Create tags => Name , sample-python
+EC2 instances->click on instance -> manage Instance -> Manage Tags -> Create tags => Name , sample-python
 Note : Code Deploy will identify by tags , we can do by ec2 names also but if anyone create with same name it will be difficult.
 Need to install Code Deploy agent inside the ec2 instance.
 ```
@@ -123,36 +126,40 @@ sudo service codedeploy-agent restart
 ![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/e945c713-eeec-44ea-a899-6698fd4f6539)
 
 Currently u created a folder for the application , name of the appication and provided deploy on ec2 instace. U need to provide where is the source code , what type of app is this , how to execute, how to deploy this app
-
+```
 you need to provide target/ target group to code deploy
 Roles -> ec2-codedeploy-role => Permission policay -> Add permission -> attach permission => ec2fullaccess
 Code deploy =>  Application (sample-python-flask-app)-> Deployment Groups => Create deployment groups => name (sample-python-app), service role -> ec2-codedeploy-role (role u create above) ,
 Deployment type => In-place (if we choose Blue/Green Deployment , we need 2 sites and loadbalancer) ,
 Environment configuration -> Amazon ec2 instance => key (name), value(sample-python) (it will show, how many instances are matching) ,
 Load Balancer (untick) -> Create Deployment group
-
+```
+```
 Inside codedeploy we regstere application payment , create a folder/registered for payments application , we created instance for payments application , for deploying payments on ec2 instnace.
 so integrated both saying this is my target group and has to be impleted but we havent told how to deploy
 Now we shown the target group to code deploy, need to show how to deploy . For showing we will create a file and update in it
-
+```
+```
 Code deploy =>  Application (sample-python-flask-app)-> deployments => deployment group (sample-python-app) , 
 Resouse type -> My appplication is storesd in github -> authenticate -> repository name -> username/repo  ,
 commit id (provide any commit id for checking CD working or not later it can integrate with codepipeline) -> create deployment (it will fail,need to have appspec.yaml at the root of the repository)
-
+```
 ec2 Terminal -> sudo apt install docker.io -y
-
+```
 code deploy -> deploy
 code pipeline -> sample-python-app -> edit ->  add stage (code-deploy below build) -> action group (name : code-deploy , 
 action provider : AWS codeDeploy, Input artifact : BuildArtifact ,Application name : sample-python-flastk-app , deployment group : sample-python-app) -> save
-
+```
+```
 make somechange in  github . Now the code pipeline will run
 Instead of codecommit . we used github
 check dockerhub now
-
+```
+```
 check codepipe -> release has failed
 ec2 terminal ->sudo docker images 
 sudo docker ps
-
+```
 errors(we will get below error. if dont create a script to remove the containers):
 ![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/aa07969f-e3bf-455d-b73b-561d71a8aa3f)
 

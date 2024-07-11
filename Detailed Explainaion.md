@@ -114,6 +114,9 @@ https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operati
 
 wget https://bucket-name.s3.region-identifier.amazonaws.com/latest/install (Provide the region in place of region-identifier as per doc , bucket-name also as per region from the link in doc)
 
+Find and select the S3 bucket where your source artifacts are stored (e.g., codepipeline-ap-southeast-2-449240622834).
+Click on the "Permissions" tab.
+Under "Bucket policy", ensure that the policy grants access to the CodeBuild service.
 ```
 EC2 Instace will talk to Code Deploy and vice versa
 roles is for services

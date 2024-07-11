@@ -1,7 +1,7 @@
-![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/f6019357-3310-405e-b946-a8daaddc2927)
+![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/29a2ab1d-ad50-45a1-9f7e-5c2b144e4d7c)![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/f6019357-3310-405e-b946-a8daaddc2927)
 
 
-AWS -> code build -> Create build project -> name , description
+AWS -> code build -> Create build project -> name(simple-python-flask-service) , description
 
 Source 1 - Primary => source provide -> Github (Authenticate) ,  Public repository / Repository in my GitHub account -> provide the url based on it.
 
@@ -51,6 +51,7 @@ phases:
     commands:
       - echo "Build is successful."
 ```
+Start Build
 ```
 Notes: 
 The command you've shared is used to log in to a Docker registry using credentials stored in environment variables. Here's a breakdown of the command:
@@ -78,9 +79,10 @@ Verify Docker build override is present or not
 
 # Now we will be using Code Pipeline  (So that we dont have to do manually. If any change is made to github repository it will triggered)
 
-AWS => CodePipeline => create Pipeline => Name , Service Role (New Service role -> it will be displaying automatically) => next
+AWS => CodePipeline => create Pipeline => Name(simple-python-app) , Service Role (New Service role -> it will be displaying automatically) => next
 
-Source => Source Provider (Github version 2) -> connect to gihub => connection name (any name), github apps (ur account) , Repository name(give repo/aws folder name) , Branch name (main) -> next
+Source => Source Provider (Github version 2) -> connect to gihub => connection name (any name:python-demo-name), github apps (ur account) , 
+Repository name(give repo/aws folder name) , Branch name (main) trigger => branch(main) -> next
 
 Build => Build Provider -> AWS CodeBuild , Project Name(Your CodeBuild Project) , Build Type (Single Build) -> next
 

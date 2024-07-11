@@ -124,9 +124,9 @@ granting access to users , we use IAM
 
 IAM -> roles -> AWS Service -> Use Case (Code Deploy) -> next -> Role name (anyname : ec2-codedeploy-role) -> create role
 ec2 -> click on instance -> actions -> security -> Modify IAM role -> Provide the role u created
-
+ 
 ec2 terminal -> sudo service codedeploy-agent restart
-sudo service codedeploy-agent restart
+sudo service codedeploy-agent status
 ```
 
 ![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/e945c713-eeec-44ea-a899-6698fd4f6539)

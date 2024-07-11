@@ -7,7 +7,7 @@ set -e
 #docker rm -f $containerid
 
 # Stop all running Docker containers
-docker stop $(docker ps -aq)
+sudo docker stop $(sudo docker ps -aq)
 
 # Remove all stopped Docker containers
-docker rm $(docker ps -aq)
+sudo docker rm $(sudo docker ps -aq)

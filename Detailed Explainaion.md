@@ -114,6 +114,7 @@ https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operati
 
 wget https://bucket-name.s3.region-identifier.amazonaws.com/latest/install (Provide the region in place of region-identifier as per doc , bucket-name also as per region from the link in doc)
 
+```
 EC2 Instace will talk to Code Deploy and vice versa
 roles is for services
 granting access to users , we use IAM 
@@ -123,6 +124,8 @@ ec2 -> click on instance -> actions -> security -> Modify IAM role -> Provide th
 
 ec2 terminal -> sudo service codedeploy-agent restart
 sudo service codedeploy-agent restart
+```
+
 ![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/e945c713-eeec-44ea-a899-6698fd4f6539)
 
 Currently u created a folder for the application , name of the appication and provided deploy on ec2 instace. U need to provide where is the source code , what type of app is this , how to execute, how to deploy this app
@@ -135,13 +138,13 @@ Environment configuration -> Amazon ec2 instance => key (name), value(sample-pyt
 Load Balancer (untick) -> Create Deployment group
 ```
 ```
-Inside codedeploy we regstere application payment , create a folder/registered for payments application , we created instance for payments application , for deploying payments on ec2 instnace.
+Inside codedeploy we register application payment , create a folder/registered for payments application , we created instance for payments application , for deploying payments on ec2 instnace.
 so integrated both saying this is my target group and has to be impleted but we havent told how to deploy
 Now we shown the target group to code deploy, need to show how to deploy . For showing we will create a file and update in it
 ```
 ```
 Code deploy =>  Application (sample-python-flask-app)-> deployments => deployment group (sample-python-app) , 
-Resouse type -> My appplication is storesd in github -> authenticate -> repository name -> username/repo  ,
+Resouse type -> My appplication is stored in github -> authenticate -> repository name -> username/repo  ,
 commit id (provide any commit id for checking CD working or not later it can integrate with codepipeline) -> create deployment (it will fail,need to have appspec.yaml at the root of the repository)
 ```
 ec2 Terminal -> sudo apt install docker.io -y

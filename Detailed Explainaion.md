@@ -151,8 +151,10 @@ ec2 Terminal -> sudo apt install docker.io -y
 ```
 code deploy -> deploy
 code pipeline -> sample-python-app -> edit ->  add stage (code-deploy below build) -> action group (name : code-deploy , 
-action provider : AWS codeDeploy, Input artifact : BuildArtifact ,Application name : sample-python-flastk-app , deployment group : sample-python-app) -> save
+action provider : AWS codeDeploy, Input artifact : BuildArtifact ,Application name : sample-python-flastk-app , deployment group : sample-python-app/Output Artifact : anyname: CodeDeployArtifact) -> save
 ```
+![image](https://github.com/Shabbirsyed05/project-AWS-Continuous-Integration/assets/119849465/a3f5b56a-63de-4bc4-9ddd-e07f3491769a)
+
 ```
 make somechange in  github . Now the code pipeline will run
 Instead of codecommit . we used github
